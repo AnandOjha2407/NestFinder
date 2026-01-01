@@ -1,138 +1,288 @@
-# 🏠 Nest Finder - Modern Property Search Platform
+# 🏠 Nest Finder
 
-A beautiful, modern React application for finding homes, guest houses, hostels, and rental properties. Built with React, Express, and a dynamic theme system.
+A modern property listing platform for finding homes, guest houses, hotels, and rental accommodations. Discover properties across multiple cities and countries with an intuitive, user-friendly interface.
+
+![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
+![License](https://img.shields.io/badge/license-ISC-green.svg)
+
+## 🎯 Project Vision
+
+Nest Finder was designed to create a comprehensive property discovery platform that combines:
+
+- **Real-time Property Discovery**: Discover properties from OpenStreetMap (OSM) based on geographical location
+- **Owner-Driven Content**: Property owners can claim and manage their listings with detailed information
+- **User Contributions**: Community-driven data with moderation support
+- **Multi-Country Support**: Currently supports properties in India and Japan with plans for global expansion
+- **Flexible Property Types**: Guest Houses (PGs), Hotels, and Rental properties
+- **Booking System**: Integrated booking functionality for seamless reservations
 
 ## ✨ Features
 
-- **Modern UI/UX** - Clean, responsive design with smooth animations
-- **Dynamic Themes** - Different color themes per page, same style system
-- **Authentication** - Email/password login and signup
-- **Property Search** - Advanced search with filters
-- **Favorites** - Save your favorite properties
-- **Property Details** - Detailed property pages with maps
-- **Category Pages** - Dedicated pages for Guest, Hostel, and Rental properties
+### Property Discovery
+- 🔍 Location-based property search across multiple cities
+- 🏙️ Support for multiple countries (India, Japan)
+- 📍 Filter by property type (Guest Houses, Hotels, Rentals)
+- 💰 Price range filtering
+- 🗺️ Interactive maps with location details
 
-## 🎨 Theme System
+### User Features
+- 👤 User authentication and profiles
+- ❤️ Save favorite properties
+- 📅 Book properties with booking management
+- 🔔 Property queries and contact information
+- 📱 Responsive design for all devices
 
-Each page has its own color theme while maintaining the same design style:
+### Owner Features
+- ✅ Claim property listings
+- 📝 Add detailed property information
+- 🖼️ Upload property images
+- 📞 Manage contact information
+- 💼 Manage multiple property listings
 
-- **Home**: Purple/Indigo gradient
-- **Guest Houses**: Warm Orange
-- **Hostels**: Cool Blue
-- **Rentals**: Green
-- **Login/Signup**: Teal
-- **Search**: Deep Blue
-- **Property Details**: Violet
+### Property Types
+- **Guest Houses (PGs)**: Paying guest accommodations with shared facilities
+- **Hotels**: Short-term stays with nightly rates
+- **Rentals**: Long-term rental properties (1BHK, 2BHK, 3BHK)
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React 18** - UI library
+- **React Router v6** - Routing
+- **Vite** - Build tool and dev server
+- **Framer Motion** - Animations
+- **Context API** - State management
+- **CSS3** - Styling with CSS Variables
+
+### Backend
+- **Node.js** - Runtime
+- **Express.js** - Web framework
+- **JWT** - Authentication
+- **bcryptjs** - Password hashing
+- **File-based Storage** - JSON files for data persistence
+
+### Data Sources
+- **OpenStreetMap (OSM)** - Property discovery (planned)
+- **Overpass API** - Geographic data queries (planned)
+- **Nominatim** - Geocoding service (planned)
+- **Static Data** - Currently using static JSON files
+
+## 📋 Prerequisites
+
+Before you begin, ensure you have the following installed:
+- **Node.js** (v16 or higher)
+- **npm** (v7 or higher)
 
 ## 🚀 Getting Started
 
-### Prerequisites
-
-- Node.js (v16 or higher)
-- npm or yarn
-
 ### Installation
 
-1. **Install dependencies:**
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd nest-finder
+   ```
+
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-2. **Start the backend server:**
+### Environment Configuration
+
+3. **Create `.env` file** in the root directory:
+   ```env
+   # Server Configuration
+   PORT=5000
+   NODE_ENV=development
+
+   # JWT Configuration
+   JWT_SECRET=your_super_secret_jwt_key_change_in_production_min_32_chars
+   JWT_EXPIRES_IN=7d
+
+   # Database Configuration (if using database in future)
+   # DATABASE_URL=mongodb://localhost:27017/nestfinder
+   # DATABASE_NAME=nestfinder
+
+   # OpenStreetMap API (Optional - for future OSM integration)
+   OSM_USER_AGENT=NestFinder/2.0.0
+   OSM_EMAIL=your-email@example.com
+
+   # Email Configuration (Optional - for notifications)
+   EMAIL_HOST=smtp.gmail.com
+   EMAIL_PORT=587
+   EMAIL_USER=your-email@gmail.com
+   EMAIL_PASS=your-app-password
+   EMAIL_FROM=noreply@nestfinder.com
+
+   # Google Maps API (Optional - for map features)
+   GOOGLE_MAPS_API_KEY=AIzaSyDemo_Key_Replace_With_Your_Own_Key
+
+   # File Upload Configuration (Optional)
+   MAX_FILE_SIZE=5242880
+   UPLOAD_PATH=./uploads
+
+   # CORS Configuration
+   CORS_ORIGIN=http://localhost:3000
+   ```
+
+4. **For development, you can use mock values:**
+   ```env
+   PORT=5000
+   NODE_ENV=development
+   JWT_SECRET=nestfinder_dev_secret_key_12345_change_in_production
+   JWT_EXPIRES_IN=7d
+   CORS_ORIGIN=http://localhost:3000
+   ```
+
+### Running the Application
+
+5. **Start the backend server** (Terminal 1):
    ```bash
    npm run server
+   # or
+   npm start
    ```
-   This starts the Express API server on `http://localhost:5000`
+   Server will run on `http://localhost:5000`
 
-3. **Start the React development server:**
+6. **Start the frontend development server** (Terminal 2):
    ```bash
    npm run dev
    ```
-   This starts Vite dev server on `http://localhost:3000`
+   Frontend will run on `http://localhost:3000`
 
-4. **Or run both simultaneously:**
-   ```bash
-   npm start
+7. **Open your browser** and navigate to:
    ```
-
-5. **Open your browser:**
-   Navigate to `http://localhost:3000`
+   http://localhost:3000
+   ```
 
 ## 📁 Project Structure
 
 ```
-Nest Finder/
-├── src/
-│   ├── components/
-│   │   ├── common/        # Navbar, Footer, ProtectedRoute
-│   │   └── property/      # PropertyCard
-│   ├── context/           # AuthContext, ThemeContext
-│   ├── pages/             # All page components
-│   ├── services/          # API service functions
-│   ├── styles/            # Global styles
-│   └── utils/             # Theme utilities
-├── public/                # Static assets
-├── data/                  # Property data (JSON)
-├── server.js              # Express backend
-└── vite.config.js         # Vite configuration
+nest-finder/
+├── src/                      # Frontend source code
+│   ├── components/          # React components
+│   │   ├── common/         # Shared components (Navbar, Footer, etc.)
+│   │   └── property/       # Property-specific components
+│   ├── context/            # React Context providers
+│   ├── pages/              # Page components
+│   ├── services/           # API service layer
+│   ├── styles/             # Global styles
+│   └── utils/              # Utility functions
+│
+├── data/                    # Data storage
+│   ├── properties.json     # Indian properties data
+│   ├── properties-japan.json  # Japanese properties data
+│   └── users.json          # User data (created on first signup)
+│
+├── public/                  # Static assets
+│   ├── assets/             # Images, videos, logos
+│   └── data/               # Public data files
+│
+├── server.js               # Backend Express server
+├── .env                    # Environment variables (create this)
+├── package.json            # Dependencies and scripts
+└── vite.config.js          # Vite configuration
 ```
 
-## 🔑 API Endpoints
+## 🔐 Authentication
+
+The application uses JWT-based authentication:
+
+1. **Signup**: Create a new account with name, email, and password
+2. **Login**: Authenticate with email and password
+3. **Token Storage**: JWT tokens stored in localStorage
+4. **Protected Routes**: Certain pages require authentication
+
+### Default Test Accounts
+
+For development/testing, you can create accounts through the signup page. No default accounts are provided for security.
+
+## 📊 Data Management
+
+### Current Implementation
+- **Static Data**: Properties stored in JSON files (`data/properties.json`)
+- **User Data**: Stored in `data/users.json` (created automatically)
+- **Bookings**: Stored in browser localStorage
+- **Favorites**: Stored in browser localStorage
+
+### Future Plans
+- Migrate to database (MongoDB/PostgreSQL)
+- Implement OpenStreetMap integration for property discovery
+- Add image upload functionality
+- Implement data synchronization across devices
+
+## 🌍 Supported Locations
+
+### India
+- **Bengaluru** - 13 properties
+- **Mumbai** - 8 properties
+- **Delhi** - 8 properties
+
+### Japan
+- **Tokyo** - 8 properties (Shibuya, Shinjuku, Ueno, Ginza, Asakusa, Setagaya)
+- **Osaka** - 3 properties (Namba, Umeda)
+- **Kyoto** - 4 properties (Gion, Higashiyama)
+
+**Total**: 44 properties across 6 cities in 2 countries
+
+## 🔧 Available Scripts
+
+```bash
+# Development
+npm run dev          # Start frontend dev server (port 3000)
+npm run server       # Start backend server (port 5000)
+npm start            # Start backend server
+
+# Production
+npm run build        # Build frontend for production
+npm run preview      # Preview production build
+```
+
+## 🔌 API Endpoints
 
 ### Authentication
-- `POST /api/auth/signup` - Create new account
-- `POST /api/auth/login` - Login
+- `POST /api/auth/signup` - Create new user account
+- `POST /api/auth/login` - User login
+- `GET /api/health` - Health check
 
-### Properties
-- `GET /api/properties` - Get all properties (with optional filters)
+### Properties (Planned - Currently using static data)
+- `GET /api/properties` - Get all properties (with filters)
 - `GET /api/property/:id` - Get single property
+- `POST /api/properties/:id/claim` - Claim property as owner
+- `PUT /api/properties/:id` - Update property
+- `GET /api/properties/my-properties` - Get owner's properties
 
-### Favorites (Protected)
-- `GET /api/favorites` - Get user's favorites
-- `POST /api/favorites` - Add to favorites
-- `DELETE /api/favorites/:propertyId` - Remove from favorites
+### Bookings (Planned)
+- `GET /api/bookings` - Get user's bookings
+- `POST /api/bookings` - Create new booking
+- `PUT /api/bookings/:id` - Update booking
+- `DELETE /api/bookings/:id` - Cancel booking
 
-## 🛣️ Routes
+## 🎨 Features in Development
 
-- `/` - Home page
-- `/guest` - Guest houses
-- `/hostel` - Hostels
-- `/rental` - Rental properties
-- `/search` - Search page with filters
-- `/login` - Login page
-- `/signup` - Signup page
-- `/property/:id` - Property detail page
-- `/favorites` - User favorites (protected)
+- [ ] OpenStreetMap integration for property discovery
+- [ ] Image upload functionality
+- [ ] Email notifications
+- [ ] Advanced search and filters
+- [ ] Property reviews and ratings
+- [ ] Payment integration
+- [ ] Admin dashboard
+- [ ] Mobile app (React Native)
 
-## 🚀 BANKAI Features (Future)
+## 🤝 Contributing
 
-When you say "bankai", we'll implement:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-1. **Real API Integration** - Replace mock data with real property APIs
-2. **Gmail OAuth** - Add Google Sign-In authentication
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-See `BANKAİ_FEATURES.md` for details.
+## 📝 License
 
-## 🛠️ Technologies
-
-- **Frontend:**
-  - React 18
-  - React Router
-  - Framer Motion (animations)
-  - Vite (build tool)
-
-- **Backend:**
-  - Express.js
-  - JWT (authentication)
-  - bcryptjs (password hashing)
-
-## 📝 Scripts
-
-- `npm run dev` - Start React dev server
-- `npm run server` - Start Express API server
-- `npm start` - Start both servers
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
+This project is licensed under the ISC License.
 
 ## 👥 Authors
 
@@ -141,10 +291,29 @@ See `BANKAİ_FEATURES.md` for details.
 - [Aniket (@skyneon1)](https://www.github.com/skyneon1)
 - [Sameeksha (@Sambil03)](https://github.com/Sambil03)
 
-## 📧 Contact
+## 🙏 Acknowledgments
 
-For queries: www.aniket716@gmail.com
+- OpenStreetMap community for geographic data
+- Unsplash for property images
+- React and Express.js communities
+- All contributors and users
+
+## 📞 Support
+
+For queries: www.aniket716@gmail.com or open an issue in the repository.
+
+## 🔮 Future Roadmap
+
+- **Phase 1** (Current): Static data with basic booking system
+- **Phase 2**: OpenStreetMap integration for property discovery
+- **Phase 3**: Database migration and user management
+- **Phase 4**: Payment gateway integration
+- **Phase 5**: Mobile application
+- **Phase 6**: Multi-language support
+- **Phase 7**: AI-powered property recommendations
 
 ---
 
-**Note:** This project uses mock data. Real API integration will be added when you say "bankai"! 🚀
+**Note**: This project is currently in active development. Some features may be incomplete or subject to change.
+
+**Last Updated**: 2024

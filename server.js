@@ -10,8 +10,9 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const app = express()
-const PORT = 5000
-const JWT_SECRET = 'nestfinder_secret_key_change_in_production'
+const PORT = process.env.PORT || 5000
+const JWT_SECRET = process.env.JWT_SECRET || 'nestfinder_dev_secret_key_change_in_production_min_32_chars'
+const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d'
 
 // Middleware
 app.use(cors())
@@ -76,7 +77,7 @@ app.post('/api/auth/signup', async (req, res) => {
 
     // Generate JWT token
     const token = jwt.sign({ userId: newUser.id, email: newUser.email }, JWT_SECRET, {
-      expiresIn: '7d'
+      expiresIn: JWT_EXPIRES_IN
     })
 
     // Return user without password
@@ -118,7 +119,7 @@ app.post('/api/auth/login', async (req, res) => {
 
     // Generate JWT token
     const token = jwt.sign({ userId: user.id, email: user.email }, JWT_SECRET, {
-      expiresIn: '7d'
+      expiresIn: JWT_EXPIRES_IN
     })
 
     // Return user without password
