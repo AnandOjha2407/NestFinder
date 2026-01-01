@@ -284,12 +284,9 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is licensed under the ISC License.
 
-## 👥 Authors
+## 👤 Owner
 
-- [Anand Ojha (@AnandOjha)](https://github.com/AnandOjha2407)
-- [Anchal (@Anchalanshu)](https://github.com/Anchalanshu)
-- [Aniket (@skyneon1)](https://www.github.com/skyneon1)
-- [Sameeksha (@Sambil03)](https://github.com/Sambil03)
+- **Anand Ojha** - [@AnandOjha](https://github.com/AnandOjha2407)
 
 ## 🙏 Acknowledgments
 
@@ -300,7 +297,7 @@ This project is licensed under the ISC License.
 
 ## 📞 Support
 
-For queries: www.aniket716@gmail.com or open an issue in the repository.
+For queries: anandojha901@gmail.com or open an issue in the repository.
 
 ## 🔮 Future Roadmap
 
@@ -316,4 +313,4 @@ For queries: www.aniket716@gmail.com or open an issue in the repository.
 
 **Note**: This project is currently in active development. Some features may be incomplete or subject to change.
 
-**Last Updated**: 2024
+**Last Updated**: 2026
