@@ -3,6 +3,7 @@ import cors from 'cors'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import fs from 'fs/promises'
+import { existsSync } from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -13,9 +14,16 @@ const app = express()
 const PORT = process.env.PORT || 5000
 const JWT_SECRET = process.env.JWT_SECRET || 'nestfinder_dev_secret_key_change_in_production_min_32_chars'
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d'
+const CORS_ORIGIN = process.env.CORS_ORIGIN || '*'
+
+if (process.env.NODE_ENV === 'production' && JWT_SECRET.includes('change_in_production')) {
+  console.warn('⚠️  JWT_SECRET is using a default/dev value. Set a strong JWT_SECRET env var in production (>= 32 chars).')
+}
 
 // Middleware
-app.use(cors())
+app.use(cors({
+  origin: CORS_ORIGIN === '*' ? true : CORS_ORIGIN.split(',').map(o => o.trim()).filter(Boolean),
+}))
 app.use(express.json())
 
 // Users storage file
@@ -139,6 +147,26 @@ app.post('/api/auth/login', async (req, res) => {
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' })
+})
+
+// Serve built frontend (after `npm run build`) for production / single-service deploys.
+const distDir = path.join(__dirname, 'dist')
+const distIndex = path.join(distDir, 'index.html')
+if (existsSync(distDir)) {
+  app.use(express.static(distDir))
+}
+
+// SPA fallback (do not hijack /api routes)
+app.get('*', (req, res) => {
+  if (req.path.startsWith('/api')) {
+    return res.status(404).json({ message: 'Not found' })
+  }
+
+  if (existsSync(distIndex)) {
+    return res.sendFile(distIndex)
+  }
+
+  return res.status(404).send('Frontend not built. Run `npm run build` to generate /dist.')
 })
 
 // Start server
