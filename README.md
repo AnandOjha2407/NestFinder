@@ -2,8 +2,7 @@
 
 A modern property listing platform for finding homes, guest houses, hotels, and rental accommodations. Discover properties across multiple cities and countries with an intuitive, user-friendly interface.
 
-![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-ISC-green.svg)
+**Live Demo:** https://anandojha.vercel.app/projects/nestfinder
 
 ## 🎯 Project Vision
 
